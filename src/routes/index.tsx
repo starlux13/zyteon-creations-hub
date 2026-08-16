@@ -1,24 +1,42 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
+import { PublicSite } from "@/components/site/PublicSite";
+import { getPublicSite } from "@/lib/public-site.functions";
+
+const siteQuery = queryOptions({
+  queryKey: ["public-site"],
+  queryFn: () => getPublicSite(),
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+export const Route = createFileRoute("/")({
+  loader: ({ context }) => context.queryClient.ensureQueryData(siteQuery),
+  head: () => ({
+    meta: [
+      { title: "ZYTEON — Agencia de diseño y desarrollo web" },
+      {
+        name: "description",
+        content:
+          "ZYTEON es una agencia de tres fundadores: diseño, desarrollo y estrategia para webs de alto impacto. Portafolio, planes y proyectos en vivo.",
+      },
+      { property: "og:title", content: "ZYTEON — Agencia de diseño y desarrollo web" },
+      {
+        property: "og:description",
+        content: "Diseñamos, desarrollamos y desplegamos experiencias web de alto impacto.",
+      },
+    ],
+  }),
+  component: HomePage,
+  errorComponent: () => (
+    <div className="flex min-h-screen items-center justify-center p-6 text-center">
+      <p className="text-muted-foreground">
+        No pudimos cargar la configuración de la web. Intenta recargar.
+      </p>
     </div>
-  );
+  ),
+});
+
+function HomePage() {
+  const { data } = useSuspenseQuery(siteQuery);
+  return <PublicSite data={data} />;
 }
