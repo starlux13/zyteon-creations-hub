@@ -221,9 +221,9 @@ function PanelLayout() {
               Salir sin guardar
             </AlertDialogAction>
           </AlertDialogFooter>
-        </AlertDialogFooter>
-      </AlertDialogContent>
+        </AlertDialogContent>
       </AlertDialog>
+
     </div>
   );
 }
