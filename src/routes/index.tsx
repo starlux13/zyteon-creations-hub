@@ -22,7 +22,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "ZYTEON — Agencia de diseño y desarrollo web" },
       {
         property: "og:description",
-        content: "Diseñamos, desarrollamos y desplegamos experiencias web de alto impacto.",
+        content: "ZYTEON es una agencia de tres fundadores: diseño, desarrollo y estrategia para webs de alto impacto. Portafolio, planes y proyectos en vivo.",
       },
     ],
   }),

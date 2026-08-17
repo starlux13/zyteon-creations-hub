@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "ZYTEON — Agencia de diseño y desarrollo web" },
+      { name: "description", content: "ZYTEON es una agencia de tres fundadores: diseño, desarrollo y estrategia para webs de alto impacto. Portafolio, planes y proyectos en vivo." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "ZYTEON — Agencia de diseño y desarrollo web" },
+      { property: "og:description", content: "ZYTEON es una agencia de tres fundadores: diseño, desarrollo y estrategia para webs de alto impacto. Portafolio, planes y proyectos en vivo." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "ZYTEON — Agencia de diseño y desarrollo web" },
+      { name: "twitter:description", content: "ZYTEON es una agencia de tres fundadores: diseño, desarrollo y estrategia para webs de alto impacto. Portafolio, planes y proyectos en vivo." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8eee2b4f0043356f2943bd6767dbc896/id-preview-987e9e87--fa9536b0-a4d6-4f1a-8268-a642bce005ce.lovable.app-1786928545423.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8eee2b4f0043356f2943bd6767dbc896/id-preview-987e9e87--fa9536b0-a4d6-4f1a-8268-a642bce005ce.lovable.app-1786928545423.png" },
     ],
     links: [
       {
