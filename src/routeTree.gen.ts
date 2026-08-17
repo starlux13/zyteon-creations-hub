@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedPanelRouteRouteImport } from './routes/_authenticated/panel/route'
 import { Route as AuthenticatedPanelIndexRouteImport } from './routes/_authenticated/panel/index'
+import { Route as AuthenticatedPanelAuditoriaRouteImport } from './routes/_authenticated/panel/auditoria'
 import { Route as AuthenticatedPanelBuzonRouteImport } from './routes/_authenticated/panel/buzon'
 import { Route as AuthenticatedPanelChatRouteImport } from './routes/_authenticated/panel/chat'
 import { Route as AuthenticatedPanelEditorRouteImport } from './routes/_authenticated/panel/editor'
@@ -45,6 +46,12 @@ const AuthenticatedPanelIndexRoute = AuthenticatedPanelIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedPanelRouteRoute,
 } as any)
+const AuthenticatedPanelAuditoriaRoute =
+  AuthenticatedPanelAuditoriaRouteImport.update({
+    id: '/auditoria',
+    path: '/auditoria',
+    getParentRoute: () => AuthenticatedPanelRouteRoute,
+  } as any)
 const AuthenticatedPanelBuzonRoute = AuthenticatedPanelBuzonRouteImport.update({
   id: '/buzon',
   path: '/buzon',
@@ -83,6 +90,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/panel': typeof AuthenticatedPanelRouteRouteWithChildren
+  '/panel/auditoria': typeof AuthenticatedPanelAuditoriaRoute
   '/panel/buzon': typeof AuthenticatedPanelBuzonRoute
   '/panel/chat': typeof AuthenticatedPanelChatRoute
   '/panel/editor': typeof AuthenticatedPanelEditorRoute
@@ -94,6 +102,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/panel/auditoria': typeof AuthenticatedPanelAuditoriaRoute
   '/panel/buzon': typeof AuthenticatedPanelBuzonRoute
   '/panel/chat': typeof AuthenticatedPanelChatRoute
   '/panel/editor': typeof AuthenticatedPanelEditorRoute
@@ -108,6 +117,7 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/_authenticated/panel': typeof AuthenticatedPanelRouteRouteWithChildren
+  '/_authenticated/panel/auditoria': typeof AuthenticatedPanelAuditoriaRoute
   '/_authenticated/panel/buzon': typeof AuthenticatedPanelBuzonRoute
   '/_authenticated/panel/chat': typeof AuthenticatedPanelChatRoute
   '/_authenticated/panel/editor': typeof AuthenticatedPanelEditorRoute
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/panel'
+    | '/panel/auditoria'
     | '/panel/buzon'
     | '/panel/chat'
     | '/panel/editor'
@@ -133,6 +144,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/auth'
+    | '/panel/auditoria'
     | '/panel/buzon'
     | '/panel/chat'
     | '/panel/editor'
@@ -146,6 +158,7 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/auth'
     | '/_authenticated/panel'
+    | '/_authenticated/panel/auditoria'
     | '/_authenticated/panel/buzon'
     | '/_authenticated/panel/chat'
     | '/_authenticated/panel/editor'
@@ -198,6 +211,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPanelIndexRouteImport
       parentRoute: typeof AuthenticatedPanelRouteRoute
     }
+    '/_authenticated/panel/auditoria': {
+      id: '/_authenticated/panel/auditoria'
+      path: '/auditoria'
+      fullPath: '/panel/auditoria'
+      preLoaderRoute: typeof AuthenticatedPanelAuditoriaRouteImport
+      parentRoute: typeof AuthenticatedPanelRouteRoute
+    }
     '/_authenticated/panel/buzon': {
       id: '/_authenticated/panel/buzon'
       path: '/buzon'
@@ -244,6 +264,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedPanelRouteRouteChildren {
+  AuthenticatedPanelAuditoriaRoute: typeof AuthenticatedPanelAuditoriaRoute
   AuthenticatedPanelBuzonRoute: typeof AuthenticatedPanelBuzonRoute
   AuthenticatedPanelChatRoute: typeof AuthenticatedPanelChatRoute
   AuthenticatedPanelEditorRoute: typeof AuthenticatedPanelEditorRoute
@@ -255,6 +276,7 @@ interface AuthenticatedPanelRouteRouteChildren {
 
 const AuthenticatedPanelRouteRouteChildren: AuthenticatedPanelRouteRouteChildren =
   {
+    AuthenticatedPanelAuditoriaRoute: AuthenticatedPanelAuditoriaRoute,
     AuthenticatedPanelBuzonRoute: AuthenticatedPanelBuzonRoute,
     AuthenticatedPanelChatRoute: AuthenticatedPanelChatRoute,
     AuthenticatedPanelEditorRoute: AuthenticatedPanelEditorRoute,
