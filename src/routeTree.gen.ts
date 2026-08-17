@@ -16,6 +16,7 @@ import { Route as AuthenticatedPanelRouteRouteImport } from './routes/_authentic
 import { Route as AuthenticatedPanelIndexRouteImport } from './routes/_authenticated/panel/index'
 import { Route as AuthenticatedPanelBuzonRouteImport } from './routes/_authenticated/panel/buzon'
 import { Route as AuthenticatedPanelEditorRouteImport } from './routes/_authenticated/panel/editor'
+import { Route as AuthenticatedPanelPortafolioRouteImport } from './routes/_authenticated/panel/portafolio'
 import { Route as AuthenticatedPanelVersionesRouteImport } from './routes/_authenticated/panel/versiones'
 
 const IndexRoute = IndexRouteImport.update({
@@ -53,6 +54,12 @@ const AuthenticatedPanelEditorRoute =
     path: '/editor',
     getParentRoute: () => AuthenticatedPanelRouteRoute,
   } as any)
+const AuthenticatedPanelPortafolioRoute =
+  AuthenticatedPanelPortafolioRouteImport.update({
+    id: '/portafolio',
+    path: '/portafolio',
+    getParentRoute: () => AuthenticatedPanelRouteRoute,
+  } as any)
 const AuthenticatedPanelVersionesRoute =
   AuthenticatedPanelVersionesRouteImport.update({
     id: '/versiones',
@@ -66,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/panel': typeof AuthenticatedPanelRouteRouteWithChildren
   '/panel/buzon': typeof AuthenticatedPanelBuzonRoute
   '/panel/editor': typeof AuthenticatedPanelEditorRoute
+  '/panel/portafolio': typeof AuthenticatedPanelPortafolioRoute
   '/panel/versiones': typeof AuthenticatedPanelVersionesRoute
   '/panel/': typeof AuthenticatedPanelIndexRoute
 }
@@ -74,6 +82,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/panel/buzon': typeof AuthenticatedPanelBuzonRoute
   '/panel/editor': typeof AuthenticatedPanelEditorRoute
+  '/panel/portafolio': typeof AuthenticatedPanelPortafolioRoute
   '/panel/versiones': typeof AuthenticatedPanelVersionesRoute
   '/panel': typeof AuthenticatedPanelIndexRoute
 }
@@ -85,6 +94,7 @@ export interface FileRoutesById {
   '/_authenticated/panel': typeof AuthenticatedPanelRouteRouteWithChildren
   '/_authenticated/panel/buzon': typeof AuthenticatedPanelBuzonRoute
   '/_authenticated/panel/editor': typeof AuthenticatedPanelEditorRoute
+  '/_authenticated/panel/portafolio': typeof AuthenticatedPanelPortafolioRoute
   '/_authenticated/panel/versiones': typeof AuthenticatedPanelVersionesRoute
   '/_authenticated/panel/': typeof AuthenticatedPanelIndexRoute
 }
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/panel'
     | '/panel/buzon'
     | '/panel/editor'
+    | '/panel/portafolio'
     | '/panel/versiones'
     | '/panel/'
   fileRoutesByTo: FileRoutesByTo
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/panel/buzon'
     | '/panel/editor'
+    | '/panel/portafolio'
     | '/panel/versiones'
     | '/panel'
   id:
@@ -114,6 +126,7 @@ export interface FileRouteTypes {
     | '/_authenticated/panel'
     | '/_authenticated/panel/buzon'
     | '/_authenticated/panel/editor'
+    | '/_authenticated/panel/portafolio'
     | '/_authenticated/panel/versiones'
     | '/_authenticated/panel/'
   fileRoutesById: FileRoutesById
@@ -175,6 +188,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPanelEditorRouteImport
       parentRoute: typeof AuthenticatedPanelRouteRoute
     }
+    '/_authenticated/panel/portafolio': {
+      id: '/_authenticated/panel/portafolio'
+      path: '/portafolio'
+      fullPath: '/panel/portafolio'
+      preLoaderRoute: typeof AuthenticatedPanelPortafolioRouteImport
+      parentRoute: typeof AuthenticatedPanelRouteRoute
+    }
     '/_authenticated/panel/versiones': {
       id: '/_authenticated/panel/versiones'
       path: '/versiones'
@@ -188,6 +208,7 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedPanelRouteRouteChildren {
   AuthenticatedPanelBuzonRoute: typeof AuthenticatedPanelBuzonRoute
   AuthenticatedPanelEditorRoute: typeof AuthenticatedPanelEditorRoute
+  AuthenticatedPanelPortafolioRoute: typeof AuthenticatedPanelPortafolioRoute
   AuthenticatedPanelVersionesRoute: typeof AuthenticatedPanelVersionesRoute
   AuthenticatedPanelIndexRoute: typeof AuthenticatedPanelIndexRoute
 }
@@ -196,6 +217,7 @@ const AuthenticatedPanelRouteRouteChildren: AuthenticatedPanelRouteRouteChildren
   {
     AuthenticatedPanelBuzonRoute: AuthenticatedPanelBuzonRoute,
     AuthenticatedPanelEditorRoute: AuthenticatedPanelEditorRoute,
+    AuthenticatedPanelPortafolioRoute: AuthenticatedPanelPortafolioRoute,
     AuthenticatedPanelVersionesRoute: AuthenticatedPanelVersionesRoute,
     AuthenticatedPanelIndexRoute: AuthenticatedPanelIndexRoute,
   }
