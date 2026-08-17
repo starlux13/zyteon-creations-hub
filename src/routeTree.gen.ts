@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedPanelRouteRouteImport } from './routes/_authenticated/panel/route'
 import { Route as AuthenticatedPanelIndexRouteImport } from './routes/_authenticated/panel/index'
+import { Route as AuthenticatedPanelBuzonRouteImport } from './routes/_authenticated/panel/buzon'
 import { Route as AuthenticatedPanelEditorRouteImport } from './routes/_authenticated/panel/editor'
 
 const IndexRoute = IndexRouteImport.update({
@@ -40,6 +41,11 @@ const AuthenticatedPanelIndexRoute = AuthenticatedPanelIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedPanelRouteRoute,
 } as any)
+const AuthenticatedPanelBuzonRoute = AuthenticatedPanelBuzonRouteImport.update({
+  id: '/buzon',
+  path: '/buzon',
+  getParentRoute: () => AuthenticatedPanelRouteRoute,
+} as any)
 const AuthenticatedPanelEditorRoute =
   AuthenticatedPanelEditorRouteImport.update({
     id: '/editor',
@@ -51,12 +57,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/panel': typeof AuthenticatedPanelRouteRouteWithChildren
+  '/panel/buzon': typeof AuthenticatedPanelBuzonRoute
   '/panel/editor': typeof AuthenticatedPanelEditorRoute
   '/panel/': typeof AuthenticatedPanelIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/panel/buzon': typeof AuthenticatedPanelBuzonRoute
   '/panel/editor': typeof AuthenticatedPanelEditorRoute
   '/panel': typeof AuthenticatedPanelIndexRoute
 }
@@ -66,20 +74,23 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/_authenticated/panel': typeof AuthenticatedPanelRouteRouteWithChildren
+  '/_authenticated/panel/buzon': typeof AuthenticatedPanelBuzonRoute
   '/_authenticated/panel/editor': typeof AuthenticatedPanelEditorRoute
   '/_authenticated/panel/': typeof AuthenticatedPanelIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/panel' | '/panel/editor' | '/panel/'
+  fullPaths:
+    '/' | '/auth' | '/panel' | '/panel/buzon' | '/panel/editor' | '/panel/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/panel/editor' | '/panel'
+  to: '/' | '/auth' | '/panel/buzon' | '/panel/editor' | '/panel'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/_authenticated/panel'
+    | '/_authenticated/panel/buzon'
     | '/_authenticated/panel/editor'
     | '/_authenticated/panel/'
   fileRoutesById: FileRoutesById
@@ -127,6 +138,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPanelIndexRouteImport
       parentRoute: typeof AuthenticatedPanelRouteRoute
     }
+    '/_authenticated/panel/buzon': {
+      id: '/_authenticated/panel/buzon'
+      path: '/buzon'
+      fullPath: '/panel/buzon'
+      preLoaderRoute: typeof AuthenticatedPanelBuzonRouteImport
+      parentRoute: typeof AuthenticatedPanelRouteRoute
+    }
     '/_authenticated/panel/editor': {
       id: '/_authenticated/panel/editor'
       path: '/editor'
@@ -138,12 +156,14 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedPanelRouteRouteChildren {
+  AuthenticatedPanelBuzonRoute: typeof AuthenticatedPanelBuzonRoute
   AuthenticatedPanelEditorRoute: typeof AuthenticatedPanelEditorRoute
   AuthenticatedPanelIndexRoute: typeof AuthenticatedPanelIndexRoute
 }
 
 const AuthenticatedPanelRouteRouteChildren: AuthenticatedPanelRouteRouteChildren =
   {
+    AuthenticatedPanelBuzonRoute: AuthenticatedPanelBuzonRoute,
     AuthenticatedPanelEditorRoute: AuthenticatedPanelEditorRoute,
     AuthenticatedPanelIndexRoute: AuthenticatedPanelIndexRoute,
   }
