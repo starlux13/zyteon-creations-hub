@@ -14,6 +14,14 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedPanelRouteRouteImport } from './routes/_authenticated/panel/route'
 import { Route as AuthenticatedPanelIndexRouteImport } from './routes/_authenticated/panel/index'
+import { Route as AuthenticatedPanelAuditoriaRouteImport } from './routes/_authenticated/panel/auditoria'
+import { Route as AuthenticatedPanelBuzonRouteImport } from './routes/_authenticated/panel/buzon'
+import { Route as AuthenticatedPanelChatRouteImport } from './routes/_authenticated/panel/chat'
+import { Route as AuthenticatedPanelEditorRouteImport } from './routes/_authenticated/panel/editor'
+import { Route as AuthenticatedPanelNotasRouteImport } from './routes/_authenticated/panel/notas'
+import { Route as AuthenticatedPanelPerfilRouteImport } from './routes/_authenticated/panel/perfil'
+import { Route as AuthenticatedPanelPortafolioRouteImport } from './routes/_authenticated/panel/portafolio'
+import { Route as AuthenticatedPanelVersionesRouteImport } from './routes/_authenticated/panel/versiones'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -39,16 +47,77 @@ const AuthenticatedPanelIndexRoute = AuthenticatedPanelIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedPanelRouteRoute,
 } as any)
+const AuthenticatedPanelAuditoriaRoute =
+  AuthenticatedPanelAuditoriaRouteImport.update({
+    id: '/auditoria',
+    path: '/auditoria',
+    getParentRoute: () => AuthenticatedPanelRouteRoute,
+  } as any)
+const AuthenticatedPanelBuzonRoute = AuthenticatedPanelBuzonRouteImport.update({
+  id: '/buzon',
+  path: '/buzon',
+  getParentRoute: () => AuthenticatedPanelRouteRoute,
+} as any)
+const AuthenticatedPanelChatRoute = AuthenticatedPanelChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => AuthenticatedPanelRouteRoute,
+} as any)
+const AuthenticatedPanelEditorRoute =
+  AuthenticatedPanelEditorRouteImport.update({
+    id: '/editor',
+    path: '/editor',
+    getParentRoute: () => AuthenticatedPanelRouteRoute,
+  } as any)
+const AuthenticatedPanelNotasRoute = AuthenticatedPanelNotasRouteImport.update({
+  id: '/notas',
+  path: '/notas',
+  getParentRoute: () => AuthenticatedPanelRouteRoute,
+} as any)
+const AuthenticatedPanelPerfilRoute =
+  AuthenticatedPanelPerfilRouteImport.update({
+    id: '/perfil',
+    path: '/perfil',
+    getParentRoute: () => AuthenticatedPanelRouteRoute,
+  } as any)
+const AuthenticatedPanelPortafolioRoute =
+  AuthenticatedPanelPortafolioRouteImport.update({
+    id: '/portafolio',
+    path: '/portafolio',
+    getParentRoute: () => AuthenticatedPanelRouteRoute,
+  } as any)
+const AuthenticatedPanelVersionesRoute =
+  AuthenticatedPanelVersionesRouteImport.update({
+    id: '/versiones',
+    path: '/versiones',
+    getParentRoute: () => AuthenticatedPanelRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/panel': typeof AuthenticatedPanelRouteRouteWithChildren
+  '/panel/auditoria': typeof AuthenticatedPanelAuditoriaRoute
+  '/panel/buzon': typeof AuthenticatedPanelBuzonRoute
+  '/panel/chat': typeof AuthenticatedPanelChatRoute
+  '/panel/editor': typeof AuthenticatedPanelEditorRoute
+  '/panel/notas': typeof AuthenticatedPanelNotasRoute
+  '/panel/perfil': typeof AuthenticatedPanelPerfilRoute
+  '/panel/portafolio': typeof AuthenticatedPanelPortafolioRoute
+  '/panel/versiones': typeof AuthenticatedPanelVersionesRoute
   '/panel/': typeof AuthenticatedPanelIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/panel/auditoria': typeof AuthenticatedPanelAuditoriaRoute
+  '/panel/buzon': typeof AuthenticatedPanelBuzonRoute
+  '/panel/chat': typeof AuthenticatedPanelChatRoute
+  '/panel/editor': typeof AuthenticatedPanelEditorRoute
+  '/panel/notas': typeof AuthenticatedPanelNotasRoute
+  '/panel/perfil': typeof AuthenticatedPanelPerfilRoute
+  '/panel/portafolio': typeof AuthenticatedPanelPortafolioRoute
+  '/panel/versiones': typeof AuthenticatedPanelVersionesRoute
   '/panel': typeof AuthenticatedPanelIndexRoute
 }
 export interface FileRoutesById {
@@ -57,19 +126,58 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/_authenticated/panel': typeof AuthenticatedPanelRouteRouteWithChildren
+  '/_authenticated/panel/auditoria': typeof AuthenticatedPanelAuditoriaRoute
+  '/_authenticated/panel/buzon': typeof AuthenticatedPanelBuzonRoute
+  '/_authenticated/panel/chat': typeof AuthenticatedPanelChatRoute
+  '/_authenticated/panel/editor': typeof AuthenticatedPanelEditorRoute
+  '/_authenticated/panel/notas': typeof AuthenticatedPanelNotasRoute
+  '/_authenticated/panel/perfil': typeof AuthenticatedPanelPerfilRoute
+  '/_authenticated/panel/portafolio': typeof AuthenticatedPanelPortafolioRoute
+  '/_authenticated/panel/versiones': typeof AuthenticatedPanelVersionesRoute
   '/_authenticated/panel/': typeof AuthenticatedPanelIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/panel' | '/panel/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/panel'
+    | '/panel/auditoria'
+    | '/panel/buzon'
+    | '/panel/chat'
+    | '/panel/editor'
+    | '/panel/notas'
+    | '/panel/perfil'
+    | '/panel/portafolio'
+    | '/panel/versiones'
+    | '/panel/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/panel'
+  to:
+    | '/'
+    | '/auth'
+    | '/panel/auditoria'
+    | '/panel/buzon'
+    | '/panel/chat'
+    | '/panel/editor'
+    | '/panel/notas'
+    | '/panel/perfil'
+    | '/panel/portafolio'
+    | '/panel/versiones'
+    | '/panel'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/_authenticated/panel'
+    | '/_authenticated/panel/auditoria'
+    | '/_authenticated/panel/buzon'
+    | '/_authenticated/panel/chat'
+    | '/_authenticated/panel/editor'
+    | '/_authenticated/panel/notas'
+    | '/_authenticated/panel/perfil'
+    | '/_authenticated/panel/portafolio'
+    | '/_authenticated/panel/versiones'
     | '/_authenticated/panel/'
   fileRoutesById: FileRoutesById
 }
@@ -116,15 +224,87 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPanelIndexRouteImport
       parentRoute: typeof AuthenticatedPanelRouteRoute
     }
+    '/_authenticated/panel/auditoria': {
+      id: '/_authenticated/panel/auditoria'
+      path: '/auditoria'
+      fullPath: '/panel/auditoria'
+      preLoaderRoute: typeof AuthenticatedPanelAuditoriaRouteImport
+      parentRoute: typeof AuthenticatedPanelRouteRoute
+    }
+    '/_authenticated/panel/buzon': {
+      id: '/_authenticated/panel/buzon'
+      path: '/buzon'
+      fullPath: '/panel/buzon'
+      preLoaderRoute: typeof AuthenticatedPanelBuzonRouteImport
+      parentRoute: typeof AuthenticatedPanelRouteRoute
+    }
+    '/_authenticated/panel/chat': {
+      id: '/_authenticated/panel/chat'
+      path: '/chat'
+      fullPath: '/panel/chat'
+      preLoaderRoute: typeof AuthenticatedPanelChatRouteImport
+      parentRoute: typeof AuthenticatedPanelRouteRoute
+    }
+    '/_authenticated/panel/editor': {
+      id: '/_authenticated/panel/editor'
+      path: '/editor'
+      fullPath: '/panel/editor'
+      preLoaderRoute: typeof AuthenticatedPanelEditorRouteImport
+      parentRoute: typeof AuthenticatedPanelRouteRoute
+    }
+    '/_authenticated/panel/notas': {
+      id: '/_authenticated/panel/notas'
+      path: '/notas'
+      fullPath: '/panel/notas'
+      preLoaderRoute: typeof AuthenticatedPanelNotasRouteImport
+      parentRoute: typeof AuthenticatedPanelRouteRoute
+    }
+    '/_authenticated/panel/perfil': {
+      id: '/_authenticated/panel/perfil'
+      path: '/perfil'
+      fullPath: '/panel/perfil'
+      preLoaderRoute: typeof AuthenticatedPanelPerfilRouteImport
+      parentRoute: typeof AuthenticatedPanelRouteRoute
+    }
+    '/_authenticated/panel/portafolio': {
+      id: '/_authenticated/panel/portafolio'
+      path: '/portafolio'
+      fullPath: '/panel/portafolio'
+      preLoaderRoute: typeof AuthenticatedPanelPortafolioRouteImport
+      parentRoute: typeof AuthenticatedPanelRouteRoute
+    }
+    '/_authenticated/panel/versiones': {
+      id: '/_authenticated/panel/versiones'
+      path: '/versiones'
+      fullPath: '/panel/versiones'
+      preLoaderRoute: typeof AuthenticatedPanelVersionesRouteImport
+      parentRoute: typeof AuthenticatedPanelRouteRoute
+    }
   }
 }
 
 interface AuthenticatedPanelRouteRouteChildren {
+  AuthenticatedPanelAuditoriaRoute: typeof AuthenticatedPanelAuditoriaRoute
+  AuthenticatedPanelBuzonRoute: typeof AuthenticatedPanelBuzonRoute
+  AuthenticatedPanelChatRoute: typeof AuthenticatedPanelChatRoute
+  AuthenticatedPanelEditorRoute: typeof AuthenticatedPanelEditorRoute
+  AuthenticatedPanelNotasRoute: typeof AuthenticatedPanelNotasRoute
+  AuthenticatedPanelPerfilRoute: typeof AuthenticatedPanelPerfilRoute
+  AuthenticatedPanelPortafolioRoute: typeof AuthenticatedPanelPortafolioRoute
+  AuthenticatedPanelVersionesRoute: typeof AuthenticatedPanelVersionesRoute
   AuthenticatedPanelIndexRoute: typeof AuthenticatedPanelIndexRoute
 }
 
 const AuthenticatedPanelRouteRouteChildren: AuthenticatedPanelRouteRouteChildren =
   {
+    AuthenticatedPanelAuditoriaRoute: AuthenticatedPanelAuditoriaRoute,
+    AuthenticatedPanelBuzonRoute: AuthenticatedPanelBuzonRoute,
+    AuthenticatedPanelChatRoute: AuthenticatedPanelChatRoute,
+    AuthenticatedPanelEditorRoute: AuthenticatedPanelEditorRoute,
+    AuthenticatedPanelNotasRoute: AuthenticatedPanelNotasRoute,
+    AuthenticatedPanelPerfilRoute: AuthenticatedPanelPerfilRoute,
+    AuthenticatedPanelPortafolioRoute: AuthenticatedPanelPortafolioRoute,
+    AuthenticatedPanelVersionesRoute: AuthenticatedPanelVersionesRoute,
     AuthenticatedPanelIndexRoute: AuthenticatedPanelIndexRoute,
   }
 
