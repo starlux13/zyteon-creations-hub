@@ -16,6 +16,7 @@ import { Route as AuthenticatedPanelRouteRouteImport } from './routes/_authentic
 import { Route as AuthenticatedPanelIndexRouteImport } from './routes/_authenticated/panel/index'
 import { Route as AuthenticatedPanelBuzonRouteImport } from './routes/_authenticated/panel/buzon'
 import { Route as AuthenticatedPanelEditorRouteImport } from './routes/_authenticated/panel/editor'
+import { Route as AuthenticatedPanelVersionesRouteImport } from './routes/_authenticated/panel/versiones'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +53,12 @@ const AuthenticatedPanelEditorRoute =
     path: '/editor',
     getParentRoute: () => AuthenticatedPanelRouteRoute,
   } as any)
+const AuthenticatedPanelVersionesRoute =
+  AuthenticatedPanelVersionesRouteImport.update({
+    id: '/versiones',
+    path: '/versiones',
+    getParentRoute: () => AuthenticatedPanelRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/panel': typeof AuthenticatedPanelRouteRouteWithChildren
   '/panel/buzon': typeof AuthenticatedPanelBuzonRoute
   '/panel/editor': typeof AuthenticatedPanelEditorRoute
+  '/panel/versiones': typeof AuthenticatedPanelVersionesRoute
   '/panel/': typeof AuthenticatedPanelIndexRoute
 }
 export interface FileRoutesByTo {
@@ -66,6 +74,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/panel/buzon': typeof AuthenticatedPanelBuzonRoute
   '/panel/editor': typeof AuthenticatedPanelEditorRoute
+  '/panel/versiones': typeof AuthenticatedPanelVersionesRoute
   '/panel': typeof AuthenticatedPanelIndexRoute
 }
 export interface FileRoutesById {
@@ -76,14 +85,27 @@ export interface FileRoutesById {
   '/_authenticated/panel': typeof AuthenticatedPanelRouteRouteWithChildren
   '/_authenticated/panel/buzon': typeof AuthenticatedPanelBuzonRoute
   '/_authenticated/panel/editor': typeof AuthenticatedPanelEditorRoute
+  '/_authenticated/panel/versiones': typeof AuthenticatedPanelVersionesRoute
   '/_authenticated/panel/': typeof AuthenticatedPanelIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/auth' | '/panel' | '/panel/buzon' | '/panel/editor' | '/panel/'
+    | '/'
+    | '/auth'
+    | '/panel'
+    | '/panel/buzon'
+    | '/panel/editor'
+    | '/panel/versiones'
+    | '/panel/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/panel/buzon' | '/panel/editor' | '/panel'
+  to:
+    | '/'
+    | '/auth'
+    | '/panel/buzon'
+    | '/panel/editor'
+    | '/panel/versiones'
+    | '/panel'
   id:
     | '__root__'
     | '/'
@@ -92,6 +114,7 @@ export interface FileRouteTypes {
     | '/_authenticated/panel'
     | '/_authenticated/panel/buzon'
     | '/_authenticated/panel/editor'
+    | '/_authenticated/panel/versiones'
     | '/_authenticated/panel/'
   fileRoutesById: FileRoutesById
 }
@@ -152,12 +175,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPanelEditorRouteImport
       parentRoute: typeof AuthenticatedPanelRouteRoute
     }
+    '/_authenticated/panel/versiones': {
+      id: '/_authenticated/panel/versiones'
+      path: '/versiones'
+      fullPath: '/panel/versiones'
+      preLoaderRoute: typeof AuthenticatedPanelVersionesRouteImport
+      parentRoute: typeof AuthenticatedPanelRouteRoute
+    }
   }
 }
 
 interface AuthenticatedPanelRouteRouteChildren {
   AuthenticatedPanelBuzonRoute: typeof AuthenticatedPanelBuzonRoute
   AuthenticatedPanelEditorRoute: typeof AuthenticatedPanelEditorRoute
+  AuthenticatedPanelVersionesRoute: typeof AuthenticatedPanelVersionesRoute
   AuthenticatedPanelIndexRoute: typeof AuthenticatedPanelIndexRoute
 }
 
@@ -165,6 +196,7 @@ const AuthenticatedPanelRouteRouteChildren: AuthenticatedPanelRouteRouteChildren
   {
     AuthenticatedPanelBuzonRoute: AuthenticatedPanelBuzonRoute,
     AuthenticatedPanelEditorRoute: AuthenticatedPanelEditorRoute,
+    AuthenticatedPanelVersionesRoute: AuthenticatedPanelVersionesRoute,
     AuthenticatedPanelIndexRoute: AuthenticatedPanelIndexRoute,
   }
 
